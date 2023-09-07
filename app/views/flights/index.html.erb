@@ -1,1 +1,8 @@
-1
+<%= form_with(url: "/index", method: "get") do |f|%>
+  <%= f.select( :departure_airport_id, options_for_select(@airports)) %> 
+  <%= f.select( :arrival_airport_id, options_for_select(@airports)) %> 
+  <%= f.select( :departure_date, options_for_select(@flights)) %> 
+  <%= f.select( :number_of_passengers, options_for_select(Array(1..4))) %> 
+  <%= submit_tag("Search") %>
+<% end %>
+
