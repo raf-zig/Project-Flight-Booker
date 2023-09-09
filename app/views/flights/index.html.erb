@@ -1,8 +1,19 @@
-<%= form_with(url: "/index", method: "get") do |f|%>
+<%= form_with(url: "/flights", method: "get") do |f|%>
+  <%= label_tag(:departure_airport_id, "Departure airport:") %>
   <%= f.select( :departure_airport_id, options_for_select(@airports)) %> 
+  <%= label_tag(:arrival_airport_id, "Arrival airport:") %>
   <%= f.select( :arrival_airport_id, options_for_select(@airports)) %> 
+  <%= label_tag(:departure_date, "Departure date:") %>
   <%= f.select( :departure_date, options_for_select(@flights)) %> 
+  <%= label_tag(:number_of_passengers, "Number of passengers:") %>
   <%= f.select( :number_of_passengers, options_for_select(Array(1..4))) %> 
   <%= submit_tag("Search") %>
 <% end %>
+
+<%@available_flights.each do |f| %>
+  <%=f.id%>
+<%end%>
+
+
+
 
