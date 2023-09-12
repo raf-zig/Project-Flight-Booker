@@ -3,17 +3,20 @@
   <%= f.select( :departure_airport_id, options_for_select(@airports)) %> 
   <%= label_tag(:arrival_airport_id, "Arrival airport:") %>
   <%= f.select( :arrival_airport_id, options_for_select(@airports)) %> 
-  <%= label_tag(:departure_date, "Departure date:") %>
-  <%= f.select( :departure_date, options_for_select(@flights)) %> 
+  <%= label_tag(:departure_time, "Departure time:") %>
+  <%= f.select( :departure_time, options_for_select(@flights)) %> 
   <%= label_tag(:number_of_passengers, "Number of passengers:") %>
   <%= f.select( :number_of_passengers, options_for_select(Array(1..4))) %> 
   <%= submit_tag("Search") %>
+<% end %><br>
+
+<%= 'Id of flights:' %>
+<%= form_with(url: "/flights", method: "get") do |f|%>
+  <% @available_flights.map{ |i|  i.id }.each do |fa| %>
+  <%= f.radio_button :id, fa %>
+  <%= f.label :id, fa %><br>
+<% end %> 
+  <%= f.submit "Search" %>
 <% end %>
-
-<%@available_flights.each do |f| %>
-  <%=f.id%>
-<%end%>
-
-
 
 
