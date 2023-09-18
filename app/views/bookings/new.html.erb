@@ -1,0 +1,19 @@
+  <%= @number_of_passengers %> 
+  <%= @selected_flight %> 
+  <%= Flight.find(@selected_flight).departure_time%>
+  <%=@pas%>
+  <%=@book%>
+
+   <%= form_with model: @book do |f| %>
+    
+    <% @number_of_passengers.to_i.times do %>
+      <%= f.fields_for @book.build_passenger do |sub_form| %>
+        <%= sub_form.label :name %>
+        <%= sub_form.text_field :name %>
+
+        <%= sub_form.label :email %>
+        <%= sub_form.text_field :email %>
+      <% end %>
+    <% end %>
+    <%= f.submit %>
+  <% end %>

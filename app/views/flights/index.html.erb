@@ -11,11 +11,12 @@
 <% end %><br>
 
 <%= 'Id of flights:' %>
-<%= form_with(url: "/flights", method: "get") do |f|%>
-  <% @available_flights.map{ |i|  i.id }.each do |fa| %>
-  <%= f.radio_button :id, fa %>
-  <%= f.label :id, fa %><br>
+<%= form_with(url: "bookings/new/", method: "get") do |f|%>
+  <% @available_flights.map{ |i|  i.id }.each do |fl| %>
+  <%= f.radio_button :id, fl %>
+  <%= f.label :id, fl %><br>
 <% end %> 
+  <%= f.hidden_field  :num_pass, :value => @number_of_passengers %>
   <%= f.submit "Search" %>
 <% end %>
 
