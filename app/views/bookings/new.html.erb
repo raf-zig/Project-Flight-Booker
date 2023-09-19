@@ -1,19 +1,27 @@
-  <%= @number_of_passengers %> 
-  <%= @selected_flight %> 
-  <%= Flight.find(@selected_flight).departure_time%>
-  <%=@pas%>
-  <%=@book%>
+<%= form_with model: @book do |f| %>
+  <%= f.label :departure_time %>
+  <%= f.text_field :departure_time, :value => @dep_time %><br><br>
+  <%= f.label :departure_airport %>
+  <%= f.text_field :departure_airport, :value => @da %><br><br>
+  <%= f.label :arrival_airport %>
+  <%= f.text_field :arrival_airport, :value => @aa %><br><br>
+  <%= f.label :flight_ID %>
+  <%= f.text_field :flight_ID, :value => @selected_flight %><br><br>
 
-   <%= form_with model: @book do |f| %>
-    
-    <% @number_of_passengers.to_i.times do %>
-      <%= f.fields_for @book.build_passenger do |sub_form| %>
-        <%= sub_form.label :name %>
-        <%= sub_form.text_field :name %>
+  <% @number_of_passengers.to_i.times do %>
+  <ul>
+    <%= f.fields_for @book.build_passenger do |sub_form| %>
+    <li>
+      <%= sub_form.label :name %>
+      <%= sub_form.text_field :name %>
 
-        <%= sub_form.label :email %>
-        <%= sub_form.text_field :email %>
-      <% end %>
+      <%= sub_form.label :email %>
+      <%= sub_form.text_field :email %><br><br>
+      </li>
     <% end %>
-    <%= f.submit %>
+    </ul> 
   <% end %>
+ 
+  <%= f.submit %>
+
+<% end %>
