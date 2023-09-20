@@ -1,27 +1,16 @@
 <%= form_with model: @book do |f| %>
-  <%= f.label :departure_time %>
-  <%= f.text_field :departure_time, :value => @dep_time %><br><br>
-  <%= f.label :departure_airport %>
-  <%= f.text_field :departure_airport, :value => @da %><br><br>
-  <%= f.label :arrival_airport %>
-  <%= f.text_field :arrival_airport, :value => @aa %><br><br>
-  <%= f.label :flight_ID %>
-  <%= f.text_field :flight_ID, :value => @selected_flight %><br><br>
+  
+  <%= f.label :flight_id %>
+  <%= f.text_field :flight_id, :value => @selected_flight %><br><br>
+  <%= f.label :passenger_num %>
+  <%= f.text_field :passenger_num, :value => @number_of_passengers %><br><br>
+  
+  <%= f.fields_for :passengers do |sub_form| %>
+    <%= sub_form.label :name %>
+    <%= sub_form.text_field :name %>
 
-  <% @number_of_passengers.to_i.times do %>
-  <ul>
-    <%= f.fields_for @book.build_passenger do |sub_form| %>
-    <li>
-      <%= sub_form.label :name %>
-      <%= sub_form.text_field :name %>
-
-      <%= sub_form.label :email %>
-      <%= sub_form.text_field :email %><br><br>
-      </li>
+    <%= sub_form.label :email %>
+    <%= sub_form.text_field :email %><br><br>
     <% end %>
-    </ul> 
-  <% end %>
- 
   <%= f.submit %>
-
 <% end %>

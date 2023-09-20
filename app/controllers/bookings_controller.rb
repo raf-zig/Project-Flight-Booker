@@ -2,16 +2,21 @@ class BookingsController < ApplicationController
   def new
     @number_of_passengers = params[:num_pass]
     @selected_flight = params[:id]
-    #@pas = Passenger.new
-    @book = Booking.new
-    @dep_time = Flight.find(@selected_flight).departure_time
-    @dep_airport = Flight.find(@selected_flight).departure_airport_id
-    @arr_airport = Flight.find(@selected_flight).arrival_airport_id
-    @da = Airport.find(@dep_airport).code
-    @aa = Airport.find(@arr_airport).code
+    @book = Booking.new(flight_id: @selected_flight, passenger_num: @number_of_passengers)
+   
+
+   @number_of_passengers.to_i.times { @book.passengers.build }
   end
 
   def create
+    @book = Booking.new(book_params)
+    if @book.save
+      redirect_to "/"
+    end
+  end
 
+  private
+  def book_params
+    params.require(:booking).permit(:flight_id, :passenger_num, passengers_attributes: [:name, :email])
   end
 end
