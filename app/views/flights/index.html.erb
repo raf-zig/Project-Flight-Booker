@@ -10,7 +10,7 @@
   <%= submit_tag("Search") %>
 <% end %><br>
 
-<%= 'Id of flights:' %>
+<%= 'Flights №:' %>
 <%= form_with(url: "bookings/new/", method: "get") do |f|%>
   <% @available_flights.map{ |i|  i.id }.each do |fl| %>
   <%= f.radio_button :id, fl %>

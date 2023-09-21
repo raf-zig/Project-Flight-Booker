@@ -1,0 +1,8 @@
+<%= "Flight №:" %> 
+<%= @book.flight_id %><br><br>
+
+<%= "Passengers names:" %><br><br> 
+<% @book.passengers.each do |i|%>
+  <%= i.name %><br>
+<% end %>
+
